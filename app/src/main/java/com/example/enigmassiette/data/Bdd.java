@@ -11,7 +11,7 @@ public class Bdd extends SQLiteOpenHelper {
 
 
         private static final String DATABASE_NAME = "NoteRestau.db";
-        private static final int DATABASE_VERSION = 1;
+        private static final int DATABASE_VERSION = 2;
 
         // Constructor
         public Bdd(Context context) {
@@ -23,12 +23,12 @@ public class Bdd extends SQLiteOpenHelper {
 
             final String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " + bddStat.TABLE_NAME + " (" +
                     bddStat._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    bddStat.COLUMN_NAME + " TEXT NOT NULL, " +
-                    bddStat.COLUMN_Time + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
-                    bddStat.COLUMN_NOTE_DECO + "INTEGER NOT NULL,"+
-                    bddStat.COLUMN_NOTE_NOURRITURE + "INTEGER NOT NULL," +
-                    bddStat.COLUMN_NOTE_SERVICE + "INTEGER NOT NULL," +
-                    bddStat.COLUMN_Desc + " TEXT NOT NULL" +
+                    bddStat.COLUMN_NAME+ " TEXT NOT NULL, " +
+                    bddStat.COLUMN_Time+ " TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                    bddStat.COLUMN_NOTE_DECO+ " INTEGER NOT NULL, "+
+                    bddStat.COLUMN_NOTE_NOURRITURE+ " INTEGER NOT NULL," +
+                    bddStat.COLUMN_NOTE_SERVICE+ " INTEGER NOT NULL," +
+                    bddStat.COLUMN_Desc + " TEXT NOT NULL " +
                     ");";
 
             sqLiteDatabase.execSQL(SQL_CREATE_WAITLIST_TABLE);
@@ -36,10 +36,6 @@ public class Bdd extends SQLiteOpenHelper {
 
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-            // For now simply drop the table and create a new one. This means if you change the
-            // DATABASE_VERSION the table will be dropped.
-            // In a production app, this method might be modified to ALTER the table
-            // instead of dropping it, so that existing data is not deleted.
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + bddStat.TABLE_NAME);
             onCreate(sqLiteDatabase);
         }

@@ -20,6 +20,8 @@ public class Main extends AppCompatActivity {
         this.ajout = (Button) findViewById(R.id.buttonAjout);
         this.all = (Button) findViewById(R.id.buttonALL);
 
+        InitBdd.startBdd(this);
+
         all.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
